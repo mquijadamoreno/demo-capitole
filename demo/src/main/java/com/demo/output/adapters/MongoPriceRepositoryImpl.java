@@ -32,8 +32,6 @@ public class MongoPriceRepositoryImpl implements MongoPriceRepository {
 
     @Override
     public Price getOne(String id) {
-        // return priceEntityMapper.toDomain(mongoPriceRepository.findById(id).orElse(null));
-
         return null;
     }
 
