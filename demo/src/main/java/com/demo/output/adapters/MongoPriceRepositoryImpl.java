@@ -23,23 +23,6 @@ public class MongoPriceRepositoryImpl implements MongoPriceRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-
-    @Override
-    public List<Price> getAll() {
-        return mongoTemplate.findAll(PriceEntity.class).stream()
-                .map(priceEntityMapper::toDomain).collect(Collectors.toList());
-    }
-
-    @Override
-    public Price getOne(String id) {
-        return null;
-    }
-
-    @Override
-    public Price save(Price price) {
-        return null;
-    }
-
     @Override
     public List<Price> findByFilters(Map<String, Object> filters) {
         Query query = new Query();
