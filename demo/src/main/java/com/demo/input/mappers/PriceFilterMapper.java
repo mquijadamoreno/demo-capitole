@@ -2,21 +2,38 @@ package com.demo.input.mappers;
 
 import com.demo.input.dto.GetPriceRQ;
 import org.mapstruct.Mapper;
+import org.springframework.util.ObjectUtils;
 
-import java.util.AbstractMap;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Mapper(componentModel = "spring")
 public interface PriceFilterMapper {
 
-    default Map<String, String> toFilterMap(GetPriceRQ request) {
-        return Stream.of(
-                        new AbstractMap.SimpleEntry<>("applicationDate", request.getApplicationDate()),
-                        new AbstractMap.SimpleEntry<>("productId", request.getProductId()),
-                        new AbstractMap.SimpleEntry<>("brandId", request.getBrandId()))
-                .filter(entry -> entry.getValue() != null)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+
+    default Map<String, Object> toFilterMap(GetPriceRQ request) {
+
+        Map<String, Object> filters = new HashMap<>();
+
+        if (!ObjectUtils.isEmpty(request.getApplicationDate())) {
+            filters.put("start_date",
+                    LocalDateTime
+                            .parse(request.getApplicationDate(),DateTimeFormatter.ofPattern(DATE_PATTERN))
+                            .toInstant(ZoneOffset.UTC));
+        }
+
+        if (!ObjectUtils.isEmpty(request.getProductId())) {
+            filters.put("product_id", Integer.valueOf(request.getProductId()));
+        }
+
+        if (!ObjectUtils.isEmpty(request.getBrandId())) {
+            filters.put("brand_id", Integer.valueOf(request.getBrandId()));
+        }
+
+        return filters;
     }
 }

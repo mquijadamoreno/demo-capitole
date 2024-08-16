@@ -43,10 +43,10 @@ public class MongoPriceRepositoryImpl implements MongoPriceRepository {
     }
 
     @Override
-    public List<Price> findByFilters(Map<String, String> filters) {
+    public List<Price> findByFilters(Map<String, Object> filters) {
         Query query = new Query();
 
-        filters.forEach((key, value) -> {
+       filters.forEach((key, value) -> {
             Criteria criteria = Criteria.where(key).is(value);
             query.addCriteria(criteria);
         });

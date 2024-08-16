@@ -2,7 +2,6 @@ package com.demo.input.adapters;
 
 import com.demo.domain.Price;
 import com.demo.output.adapters.MongoPriceRepository;
-import com.demo.output.ports.PriceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ public class PriceUseCasesAdapter implements PriceUseCases {
     private final MongoPriceRepository priceRepository;
 
     @Override
-    public List<Price> findPriceByFilters(Map<String, String> filters) {
+    public List<Price> findPriceByFilters(Map<String, Object> filters) {
         return priceRepository.findByFilters(filters);
     }
 }

@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface PriceUseCases {
 
-    List<Price> findPriceByFilters(Map<String, String> filters);
+    List<Price> findPriceByFilters(Map<String, Object> filters);
 
 }
