@@ -20,7 +20,7 @@ public interface PriceFilterMapper {
         Map<String, Object> filters = new HashMap<>();
 
         if (!ObjectUtils.isEmpty(request.getApplicationDate())) {
-            filters.put("start_date",
+            filters.put("date",
                     LocalDateTime
                             .parse(request.getApplicationDate(),DateTimeFormatter.ofPattern(DATE_PATTERN))
                             .toInstant(ZoneOffset.UTC));
