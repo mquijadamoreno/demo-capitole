@@ -1,18 +1,12 @@
 package com.demo.input.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class GetPriceRQ {
-
-    @JsonProperty("applicationDate")
     private String applicationDate;
-
-    @JsonProperty("productId")
     private String productId;
-
-    @JsonProperty("brandId")
     private String brandId;
-
 }
