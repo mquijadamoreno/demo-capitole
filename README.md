@@ -121,25 +121,12 @@ db.prices.find({
 
   ```json
   [
-    {
-      "brandId": 1,
-      "startDate": "2022-02-01T00:00:00.000Z",
-      "endDate": "2022-12-31T23:59:59.000Z",
-      "priceList": 5,
-      "productId": 35473,
-      "priority": 2,
-      "price": 37.00,
-      "currency": "EUR"
-    },
-    {
-      "brandId": 3,
-      "startDate": "2022-03-01T00:00:00.000Z",
-      "endDate": "2022-12-31T23:59:59.000Z",
-      "priceList": 6,
-      "productId": 35474,
-      "priority": 1,
-      "price": 29.99,
-      "currency": "USD"
-    }
-  ]
+	{
+		"productId": 35456,
+		"brandId": 2,
+		"tariff": 4,
+		"price": 40.0,
+		"currency": "USD"
+	}
+]
     ```
