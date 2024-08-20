@@ -128,5 +128,5 @@ db.prices.find({
 		"price": 40.0,
 		"currency": "USD"
 	}
-]
-    ```
+  ]
+  ```
