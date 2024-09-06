@@ -21,4 +21,18 @@ public class Price {
     private Integer priority;
     private Double price;
     private String currency;
+
+    public static String getBrandIdFilter(){
+        return "brand_id";
+    }
+
+    public static String getDateFilter(){
+        return "date";
+    }
+
+    public static String getProductIdFilter(){
+        return "product_id";
+    }
 }
+
+

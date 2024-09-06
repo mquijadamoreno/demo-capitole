@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
 import static com.demo.util.PriceDataFixture.generatePrice;
-import static com.demo.util.PriceDataFixture.generatePriceDocument;
+import static com.demo.util.PriceDataFixture.generatePriceEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PriceMapperTest {
@@ -16,23 +16,23 @@ public class PriceMapperTest {
     private PriceEntityMapper priceEntityMapper = Mappers.getMapper(PriceEntityMapper.class);
 
     private static Price priceDomain;
-    private static PriceEntity priceDocument;
+    private static PriceEntity priceEntity;
 
     @BeforeAll
-    private static void setUp(){
+    public static void setUp(){
         priceDomain = generatePrice();
-        priceDocument = generatePriceDocument();
+        priceEntity = generatePriceEntity();
     }
 
     @Test
     public void testToDocument(){
-        PriceEntity document = priceEntityMapper.toDocument(priceDomain);
-        assertThat(document).usingRecursiveComparison().isEqualTo(priceDocument);
+        PriceEntity document = priceEntityMapper.toEntity(priceDomain);
+        assertThat(document).usingRecursiveComparison().isEqualTo(priceEntity);
     }
 
     @Test
     public void testToDomain(){
-        Price domain = priceEntityMapper.toDomain(priceDocument);
+        Price domain = priceEntityMapper.toDomain(priceEntity);
         assertThat(domain).usingRecursiveComparison().isEqualTo(priceDomain);
     }
 

@@ -1,41 +1,42 @@
 package com.demo.output.pojo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 
-@Document("prices")
 @Builder
 @Data
 public class PriceEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Field("brand_id")
+    @Column(name = "brand_id")
     private Integer brandId;
 
-    @Field("start_date")
+    @Column(name = "start_date")
     private LocalDateTime startDate;
 
-    @Field("end_date")
+    @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @Field("price_list")
+    @Column(name = "price_list")
     private Integer priceList;
 
-    @Field("product_id")
+    @Column(name = "product_id")
     private Integer productId;
 
-    @Field("priority")
+    @Column(name = "priority")
     private Integer priority;
 
-    @Field("price")
+    @Column(name = "price")
     private Double price;
 
-    @Field("curr")
+    @Column(name = "currency")
     private String currency;
 }

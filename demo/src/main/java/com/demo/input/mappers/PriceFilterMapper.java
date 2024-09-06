@@ -1,11 +1,11 @@
 package com.demo.input.mappers;
 
+import com.demo.domain.Price;
 import com.demo.input.dto.GetPriceRQ;
 import org.mapstruct.Mapper;
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,18 +20,17 @@ public interface PriceFilterMapper {
         Map<String, Object> filters = new HashMap<>();
 
         if (!ObjectUtils.isEmpty(request.getApplicationDate())) {
-            filters.put("date",
+            filters.put(Price.getDateFilter(),
                     LocalDateTime
-                            .parse(request.getApplicationDate(),DateTimeFormatter.ofPattern(DATE_PATTERN))
-                            .toInstant(ZoneOffset.UTC));
+                            .parse(request.getApplicationDate(),DateTimeFormatter.ofPattern(DATE_PATTERN)));
         }
 
         if (!ObjectUtils.isEmpty(request.getProductId())) {
-            filters.put("product_id", Integer.valueOf(request.getProductId()));
+            filters.put(Price.getProductIdFilter(), Integer.valueOf(request.getProductId()));
         }
 
         if (!ObjectUtils.isEmpty(request.getBrandId())) {
-            filters.put("brand_id", Integer.valueOf(request.getBrandId()));
+            filters.put(Price.getBrandIdFilter(), Integer.valueOf(request.getBrandId()));
         }
 
         return filters;

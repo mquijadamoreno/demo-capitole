@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/prices")
 @RequiredArgsConstructor
@@ -48,12 +45,11 @@ public class PricesController {
             @Pattern(regexp = "^\\d+$", message = "Brand ID must be a numeric value.")
             String brandId) {
 
-        List<Price> prices = priceService.findPriceByFilters(filterMapper.toFilterMap(
+        Price price = priceService.findPriceByFilters(filterMapper.toFilterMap(
                 GetPriceRQ.builder().applicationDate(applicationDate).brandId(brandId).productId(productId).build()));
 
-        return prices.isEmpty() ? ResponseEntity.ok("No prices found") :
-                ResponseEntity.ok(
-                        prices.stream().map(priceResponseMapper::toPriceResponseDTO).collect(Collectors.toList()));
+        return price == null ? ResponseEntity.ok("No prices found") :
+                ResponseEntity.ok(priceResponseMapper.toPriceResponseDTO(price));
     }
 
 }
