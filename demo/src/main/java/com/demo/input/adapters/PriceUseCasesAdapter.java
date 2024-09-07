@@ -11,7 +11,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PriceUseCasesAdapter implements PriceUseCases {
 
-    private PriceRepository priceRepository;
+    private final PriceRepository priceRepository;
 
     @Override
     public Price findPriceByFilters(Map<String, Object> filters) {

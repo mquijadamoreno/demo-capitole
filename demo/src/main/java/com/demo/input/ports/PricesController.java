@@ -23,7 +23,6 @@ public class PricesController {
 
     private final PriceUseCases priceService;
     private final PriceFilterMapper filterMapper;
-
     private final PriceResponseMapper priceResponseMapper;
 
 
@@ -31,8 +30,8 @@ public class PricesController {
     public ResponseEntity<Object> getPrices(
             @RequestParam
             @NotBlank(message = "Application date is required.")
-            @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
-                    message = "The date must be in the format yyyy-MM-dd'T'HH:mm:ss.SSSX, e.g., 2021-01-15T16:00:00.000Z")
+            @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+                    message = "The date must be in the format yyyy-MM-dd'T'HH:mm:ss, e.g., 2021-01-15T16:00:00")
             String applicationDate,
 
             @RequestParam

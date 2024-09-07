@@ -47,18 +47,16 @@ public class PricesControllerTest {
         String productId = "35455";
         String brandId = "1";
         Price price = new Price();
-        List<Price> prices = Collections.singletonList(price);
 
         when(filterMapper.toFilterMap(any(GetPriceRQ.class))).thenReturn(Collections.emptyMap());
-        when(priceService.findPriceByFilters(any())).thenReturn(prices);
+        when(priceService.findPriceByFilters(any())).thenReturn(price);
         when(priceResponseMapper.toPriceResponseDTO(any(Price.class))).thenReturn(new PriceResponseDTO());
 
         ResponseEntity<Object> responseEntity = pricesController.getPrices(applicationDate, productId, brandId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isInstanceOf(List.class);
-        List<PriceResponseDTO> responseList = (List<PriceResponseDTO>) responseEntity.getBody();
-        assertThat(responseList).hasSize(1);
+        assertThat(responseEntity.getBody()).isInstanceOf(PriceResponseDTO.class);
+        PriceResponseDTO response = (PriceResponseDTO) responseEntity.getBody();
         verify(priceService, times(1)).findPriceByFilters(any());
     }
 
@@ -69,7 +67,7 @@ public class PricesControllerTest {
         String brandId = "1";
 
         when(filterMapper.toFilterMap(any(GetPriceRQ.class))).thenReturn(Collections.emptyMap());
-        when(priceService.findPriceByFilters(any())).thenReturn(Collections.emptyList());
+        when(priceService.findPriceByFilters(any())).thenReturn(null);
 
         ResponseEntity<Object> responseEntity = pricesController.getPrices(applicationDate, productId, brandId);
 

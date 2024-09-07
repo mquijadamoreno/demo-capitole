@@ -13,8 +13,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PriceRepositoryAdapter implements PriceRepository {
 
-    private PriceJpaRepository priceJpaRepository;
-    private PriceEntityMapper priceEntityMapper;
+    private final PriceJpaRepository priceJpaRepository;
+    private final PriceEntityMapper priceEntityMapper;
 
     @Override
     public Price findByFilters(Map<String, Object> filters) {

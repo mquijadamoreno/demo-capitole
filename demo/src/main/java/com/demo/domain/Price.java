@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class Price {
     private Integer priceList;
     private Integer productId;
     private Integer priority;
-    private Double price;
+    private BigDecimal price;
     private String currency;
 
     public static String getBrandIdFilter(){

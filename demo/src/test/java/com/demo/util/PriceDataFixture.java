@@ -3,6 +3,7 @@ package com.demo.util;
 import com.demo.domain.Price;
 import com.demo.output.pojo.PriceEntity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PriceDataFixture {
@@ -13,7 +14,7 @@ public class PriceDataFixture {
     private static final Integer priceList = 1;
     private static final Integer productId = 35455;
     private static final Integer priority = 0;
-    private static final Double price = 35.50;
+    private static final BigDecimal price = BigDecimal.valueOf(35.50);
     private static final String currency = "EUR";
 
     public static Price generatePrice() {

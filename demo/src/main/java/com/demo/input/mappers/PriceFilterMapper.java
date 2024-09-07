@@ -13,7 +13,7 @@ import java.util.Map;
 @Mapper(componentModel = "spring")
 public interface PriceFilterMapper {
 
-    String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss";
 
     default Map<String, Object> toFilterMap(GetPriceRQ request) {
 
