@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -56,7 +55,6 @@ public class PricesControllerTest {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isInstanceOf(PriceResponseDTO.class);
-        PriceResponseDTO response = (PriceResponseDTO) responseEntity.getBody();
         verify(priceService, times(1)).findPriceByFilters(any());
     }
 
